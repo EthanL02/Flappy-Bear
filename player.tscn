@@ -1,3 +1,35 @@
-[gd_scene format=3 uid="uid://bao3pe3od3fb1"]
+[gd_scene load_steps=5 format=3 uid="uid://bao3pe3od3fb1"]
+
+[ext_resource type="Texture2D" uid="uid://cwhhc7tsup0rq" path="res://Art/F0.png" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c6u0s1dc84xqs" path="res://Art/F1.png" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqtel"]
+radius = 9.0
+height = 32.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_onrkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 2.0
+}]
 
 [node name="Player" type="AnimatableBody2D"]
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_hqtel")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"flap"
+frame = 1
+frame_progress = 0.7806037
