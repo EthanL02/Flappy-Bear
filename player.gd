@@ -1,5 +1,6 @@
-extends AnimatableBody2D
+extends CharacterBody2D
 
+@export var jump_strength = 400
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,4 +11,6 @@ func _ready() -> void:
 func _process(delta: float):
 	var velocity = Vector2.ZERO
 	if Input.is_action_just_pressed("Flap"):
-		velocity.y -= 1
+		velocity.y -= jump_strength
+		
+	position += velocity * delta

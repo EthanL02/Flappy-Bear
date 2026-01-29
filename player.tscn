@@ -22,7 +22,7 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Player" type="AnimatableBody2D"]
+[node name="Player" type="CharacterBody2D"]
 scale = Vector2(5, 5)
 script = ExtResource("1_i3pqv")
 
