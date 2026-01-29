@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bao3pe3od3fb1"]
+[gd_scene load_steps=6 format=3 uid="uid://bao3pe3od3fb1"]
 
+[ext_resource type="Script" uid="uid://bf8y1hn347nfh" path="res://player.gd" id="1_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cwhhc7tsup0rq" path="res://Art/F0.png" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://c6u0s1dc84xqs" path="res://Art/F1.png" id="2_i3pqv"]
 
@@ -23,6 +24,7 @@ animations = [{
 
 [node name="Player" type="AnimatableBody2D"]
 scale = Vector2(5, 5)
+script = ExtResource("1_i3pqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5707964
