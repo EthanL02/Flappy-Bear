@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 const GRAVITY = 200
 
@@ -6,7 +6,4 @@ const GRAVITY = 200
 
 
 func _physics_process(delta: float):
-	velocity.y += delta * GRAVITY
-	
-	var motion = velocity * delta
-	move_and_collide(motion)
+	pass
