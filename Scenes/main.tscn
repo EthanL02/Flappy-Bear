@@ -33,6 +33,7 @@ position = Vector2(432, -12.5)
 shape = SubResource("RectangleShape2D_kry3j")
 
 [node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5

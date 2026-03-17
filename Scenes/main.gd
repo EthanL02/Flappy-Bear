@@ -24,6 +24,7 @@ func new_game():
 	game_over = false
 	score = 0
 	scroll = 0
+	$ScoreLabel.text = "SCORE: " + str(score)
 	$Player.reset()
 					
 func start_game():
@@ -67,8 +68,13 @@ func generate_pipes():
 	pipe.position.x = screen_size.x + PIPE_DELAY
 	pipe.position.y = (screen_size.y - ground_height) / 2 + randi_range(-PIPE_RANGE, PIPE_RANGE)
 	pipe.hit.connect(player_hit)
+	pipe.scored.connect(scored)
 	add_child(pipe)
 	pipes.append(pipe)
+	
+func scored():
+	score += 1
+	$ScoreLabel.text = "SCORE: " + str(score)
 		
 func stop_game():
 	$PipeTimer.stop()
