@@ -4,7 +4,7 @@ const START_POS = Vector2(100, 400)
 const GRAVITY : int = 1000
 const MAX_VEL : int = 600
 const FLAP_SPEED : int = -500
-var flying : bool = false
+var active : bool = false
 var falling : bool = false
 
 func _ready():
@@ -12,18 +12,21 @@ func _ready():
 	
 func reset():
 	falling = false
-	flying = false
+	active = false
 	position = START_POS
 	set_rotation(0)
 	
 func _physics_process(delta: float):
-	if flying or falling:
+	move(delta)
+		
+func move(delta: float):
+	if active or falling:
 		velocity.y += min(GRAVITY * delta, MAX_VEL)
 			
-		if flying:
+		if active: 	# Normal state
 			set_rotation(deg_to_rad(velocity.y * 0.05))
 			$AnimatedSprite2D.play()
-		elif falling:
+		elif falling: 	# In
 			set_rotation(PI / 2)
 			$AnimatedSprite2D.stop()
 		

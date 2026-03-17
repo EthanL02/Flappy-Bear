@@ -33,7 +33,7 @@ func new_game():
 					
 func start_game():
 	game_running = true
-	$Player.flying = true
+	$Player.active = true
 	$Player.flap()
 	$PipeTimer.start()
 
@@ -58,7 +58,7 @@ func flap():
 		if game_running == false:
 			start_game()
 		else:
-			if $Player.flying:
+			if $Player.active:
 				$Player.flap()
 
 
@@ -80,7 +80,7 @@ func scored():
 		
 func stop_game():
 	$PipeTimer.stop()
-	$Player.flying = false
+	$Player.active = false
 	game_running = false
 	game_over = true
 	$GameOver.show()
