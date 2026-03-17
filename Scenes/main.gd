@@ -11,12 +11,12 @@ var pipes : Array
 const PIPE_DELAY : int = 100
 const PIPE_RANGE : int = 200
 var screen_size : Vector2i
-var ground_height = $Ground.get_node("Sprite2D").texture.get_height()
+var ground_height : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_window().size
-	
+	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
 	new_game()
 	
 func new_game():
@@ -24,8 +24,6 @@ func new_game():
 	game_over = false
 	score = 0
 	scroll = 0
-	pipes.clear()
-	generate_pipes()
 	$Player.reset()
 					
 func start_game():
@@ -33,6 +31,8 @@ func start_game():
 	$Player.flying = true
 	$Player.flap()
 	$PipeTimer.start()
+	pipes.clear()
+	generate_pipes()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
@@ -44,17 +44,19 @@ func _process(delta: float):
 		
 		$Ground.position.x = -scroll
 		
-	for pipe in pipes:
-		pipe.position.x -= SCROLL_SPEED
+		for pipe in pipes:
+			pipe.position.x -= SCROLL_SPEED
 	
 	if Input.is_action_just_pressed("flap"):
 		flap()
 		
-func flap():	
-	if game_running == false:
-		start_game()
-	elif $Player.flying:
-		$Player.flap()
+func flap():
+	if game_over == false:
+		if game_running == false:
+			start_game()
+		else:
+			if $Player.flying:
+				$Player.flap()
 
 
 func _on_pipe_timer_timeout():
@@ -67,6 +69,22 @@ func generate_pipes():
 	pipe.hit.connect(player_hit)
 	add_child(pipe)
 	pipes.append(pipe)
+		
+func stop_game():
+	$PipeTimer.stop()
+	$Player.flying = false
+	game_running = false
+	game_over = true
 	
 func player_hit():
-	pass
+	$Player.falling = true
+	stop_game()
+
+
+func _on_top_border_body_entered(body: Node2D):
+	player_hit()
+
+
+func _on_ground_hit():
+	$Player.falling = false
+	stop_game()

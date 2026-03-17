@@ -5,7 +5,7 @@ const GRAVITY : int = 1000
 const MAX_VEL : int = 600
 const FLAP_SPEED : int = -500
 var flying : bool = false
-var falling : bool = true
+var falling : bool = false
 
 func _ready():
 	reset()
