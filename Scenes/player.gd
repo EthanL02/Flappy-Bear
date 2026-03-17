@@ -18,10 +18,7 @@ func reset():
 	
 func _physics_process(delta: float):
 	if flying or falling:
-		velocity.y += GRAVITY * delta
-		
-		if velocity.y > MAX_VEL:
-			velocity.y = MAX_VEL
+		velocity.y += min(GRAVITY * delta, MAX_VEL)
 			
 		if flying:
 			set_rotation(deg_to_rad(velocity.y * 0.05))
