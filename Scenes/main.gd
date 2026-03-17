@@ -26,14 +26,16 @@ func new_game():
 	scroll = 0
 	$ScoreLabel.text = "SCORE: " + str(score)
 	$Player.reset()
+	$GameOver.hide()
+	get_tree().call_group("pipes", "queue_free")
+	pipes.clear()	
+	generate_pipes()
 					
 func start_game():
 	game_running = true
 	$Player.flying = true
 	$Player.flap()
 	$PipeTimer.start()
-	pipes.clear()
-	generate_pipes()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
@@ -81,6 +83,7 @@ func stop_game():
 	$Player.flying = false
 	game_running = false
 	game_over = true
+	$GameOver.show()
 	
 func player_hit():
 	$Player.falling = true
@@ -94,3 +97,7 @@ func _on_top_border_body_entered(body: Node2D):
 func _on_ground_hit():
 	$Player.falling = false
 	stop_game()
+
+
+func _on_game_over_restart():
+	new_game()
