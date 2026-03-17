@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7b7j6g6nenev"]
+[gd_scene load_steps=5 format=3 uid="uid://b7b7j6g6nenev"]
 
 [ext_resource type="Script" uid="uid://dcijsn0bilojm" path="res://Scenes/main.gd" id="1_8gbba"]
 [ext_resource type="Texture2D" uid="uid://b1nc6xbcdpp2j" path="res://Art/bg.png" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://cf4pln1iuokm3" path="res://Scenes/player.tscn" id="3_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://v3rdvj1kbsq6" path="res://Scenes/ground.tscn" id="4_jjvhh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_8gbba")
@@ -12,3 +13,5 @@ texture = ExtResource("1_jjgbg")
 centered = false
 
 [node name="Player" parent="." instance=ExtResource("3_jjvhh")]
+
+[node name="Ground" parent="." instance=ExtResource("4_jjvhh")]

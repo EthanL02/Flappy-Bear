@@ -8,9 +8,11 @@ const SCROLL_SPEED : int = 4
 var pipes : Array
 const PIPE_DELAY : int = 100
 const PIPE_RANGE : int = 200
+var screen_size : Vector2i
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	screen_size = get_window().size
 	new_game()
 	
 func new_game():
@@ -27,6 +29,14 @@ func start_game():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
+	if game_running:
+		scroll += SCROLL_SPEED
+		
+		if scroll >= screen_size.x:
+			scroll = 0
+		
+		$Ground.position.x = -scroll
+	
 	if Input.is_action_just_pressed("flap"):
 		flap()
 		
