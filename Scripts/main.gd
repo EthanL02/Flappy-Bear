@@ -49,9 +49,9 @@ func _process(delta: float):
 		
 		for pipe in pipes:
 			pipe.position.x -= SCROLL_SPEED
-	
-	if Input.is_action_just_pressed("flap"):
-		flap()
+	#
+	#if Input.is_action_just_pressed("flap"):
+		#flap()
 		
 func flap():
 	if game_over == false:
