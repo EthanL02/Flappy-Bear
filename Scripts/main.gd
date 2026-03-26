@@ -1,5 +1,8 @@
 extends Node
 
+@onready var player: Player = %Player
+
+
 @export var pipe_scene : PackedScene
 
 var game_running : bool
@@ -15,6 +18,7 @@ var ground_height : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
 	new_game()
@@ -33,8 +37,6 @@ func new_game():
 					
 func start_game():
 	game_running = true
-	$Player.active = true
-	$Player.flap()
 	$PipeTimer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,17 +51,6 @@ func _process(delta: float):
 		
 		for pipe in pipes:
 			pipe.position.x -= SCROLL_SPEED
-	#
-	#if Input.is_action_just_pressed("flap"):
-		#flap()
-		
-func flap():
-	if game_over == false:
-		if game_running == false:
-			start_game()
-		else:
-			if $Player.active:
-				$Player.flap()
 
 
 func _on_pipe_timer_timeout():
@@ -86,7 +77,6 @@ func stop_game():
 	$GameOver.show()
 	
 func player_hit():
-	$Player.falling = true
 	stop_game()
 
 
@@ -95,9 +85,12 @@ func _on_top_border_body_entered(body: Node2D):
 
 
 func _on_ground_hit():
-	$Player.falling = false
 	stop_game()
 
 
 func _on_game_over_restart():
 	new_game()
+
+
+func _on_main_menu_solo_start() -> void:
+	player.active = true

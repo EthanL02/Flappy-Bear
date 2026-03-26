@@ -1,6 +1,7 @@
 extends CanvasLayer
-@onready var player: Player = %Player
+
+signal solo_start
 
 func _on_play_button_pressed() -> void:
-	player.active = true
+	solo_start.emit()
 	hide()
