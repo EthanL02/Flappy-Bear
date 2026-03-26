@@ -26,6 +26,7 @@ unique_name_in_owner = true
 position = Vector2(-50, 0)
 
 [node name="Ground" parent="." instance=ExtResource("4_jjvhh")]
+unique_name_in_owner = true
 z_index = 1
 
 [node name="PipeTimer" type="Timer" parent="."]
@@ -51,7 +52,6 @@ text = "Score: 0"
 
 [node name="GameOver" parent="." instance=ExtResource("6_21xkr")]
 
-[connection signal="solo_start" from="MainMenu" to="." method="_on_main_menu_solo_start"]
 [connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
 [connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
 [connection signal="body_entered" from="TopBorder" to="." method="_on_top_border_body_entered"]

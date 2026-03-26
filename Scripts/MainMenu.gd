@@ -1,7 +1,7 @@
-extends CanvasLayer
+class_name MainMenu extends CanvasLayer
 
-signal solo_start
+signal start_solo
 
 func _on_play_button_pressed() -> void:
-	solo_start.emit()
+	start_solo.emit()
 	hide()

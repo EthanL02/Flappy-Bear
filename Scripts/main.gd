@@ -1,7 +1,8 @@
 extends Node
 
 @onready var player: Player = %Player
-
+@onready var ground: Ground = %Ground
+@onready var main_menu: MainMenu = $MainMenu
 
 @export var pipe_scene : PackedScene
 
@@ -13,15 +14,16 @@ const SCROLL_SPEED : int = 4
 var pipes : Array
 const PIPE_DELAY : int = 100
 const PIPE_RANGE : int = 200
-var screen_size : Vector2i
 var ground_height : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	screen_size = get_window().size
+	main_menu.start_solo.connect(start_solo)
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
 	new_game()
+	
+func start_solo() -> void:	
+	game_running = true
 	
 func new_game():
 	game_running = false
@@ -38,16 +40,15 @@ func new_game():
 func start_game():
 	game_running = true
 	$PipeTimer.start()
+	
+func _physics_process(delta: float) -> void:
+	if game_running:
+		player.update(delta)
+		ground.update()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float):
 	if game_running:
-		scroll += SCROLL_SPEED
-		
-		if scroll >= screen_size.x:
-			scroll = 0
-		
-		$Ground.position.x = -scroll
 		
 		for pipe in pipes:
 			pipe.position.x -= SCROLL_SPEED
@@ -58,8 +59,8 @@ func _on_pipe_timer_timeout():
 	
 func generate_pipes():
 	var pipe = pipe_scene.instantiate()
-	pipe.position.x = screen_size.x + PIPE_DELAY
-	pipe.position.y = (screen_size.y - ground_height) / 2 + randi_range(-PIPE_RANGE, PIPE_RANGE)
+	#pipe.position.x = screen_size.x + PIPE_DELAY
+	#pipe.position.y = (screen_size.y - ground_height) / 2 + randi_range(-PIPE_RANGE, PIPE_RANGE)
 	pipe.hit.connect(player_hit)
 	pipe.scored.connect(scored)
 	add_child(pipe)
@@ -90,7 +91,3 @@ func _on_ground_hit():
 
 func _on_game_over_restart():
 	new_game()
-
-
-func _on_main_menu_solo_start() -> void:
-	player.active = true
