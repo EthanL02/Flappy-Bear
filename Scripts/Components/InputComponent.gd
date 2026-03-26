@@ -1,6 +1,7 @@
 class_name InputComponent extends Node
 
-var flap_pressed := false
+signal flap
 
 func update() -> void:
-	flap_pressed = Input.is_action_just_pressed("flap")
+	if Input.is_action_just_pressed("flap"):
+		flap.emit()

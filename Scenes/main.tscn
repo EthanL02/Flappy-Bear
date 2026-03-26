@@ -24,6 +24,7 @@ centered = false
 [node name="Player" parent="." instance=ExtResource("3_jjvhh")]
 unique_name_in_owner = true
 position = Vector2(-50, 0)
+active = null
 
 [node name="Ground" parent="." instance=ExtResource("4_jjvhh")]
 z_index = 1
