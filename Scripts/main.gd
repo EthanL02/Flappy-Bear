@@ -20,6 +20,8 @@ func _ready():
 func start_solo() -> void:	
 	game_running = true
 	spawn_component.start()
+	spawn_component.hit.connect(player_hit)
+	spawn_component.scored.connect(scored)
 	ground.start()
 	
 func new_game():

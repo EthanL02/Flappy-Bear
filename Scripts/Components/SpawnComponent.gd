@@ -3,6 +3,9 @@ class_name SpawnComponent extends Node
 
 const SPAWN_DELAY : int = 50
 
+signal hit
+signal scored
+
 @export var spawn_item : PackedScene
 @export var vertical_range : Vector2i
 
@@ -24,6 +27,8 @@ func update() -> void:
 
 func spawn() -> void:
 	var item = spawn_item.instantiate()
+	item.hit.connect(hit.emit)
+	item.scored.connect(scored.emit)
 	spawn_position.y = randi_range(vertical_range.x, vertical_range.y)
 	item.position = spawn_position
 	item.start(screen_size)
