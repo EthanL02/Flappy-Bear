@@ -5,17 +5,19 @@
 [ext_resource type="Script" uid="uid://0j65xk457rtc" path="res://Scripts/Components/ScrollComponent.gd" id="3_02qk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oltiy"]
-size = Vector2(1728, 166)
+size = Vector2(1728, 190)
 
 [node name="Ground" type="Area2D"]
 script = ExtResource("1_oltiy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -109.714355)
+scale = Vector2(1, 1.1428572)
 texture = ExtResource("1_688p1")
 offset = Vector2(864, 852)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(864, 853)
+position = Vector2(864, 865)
 shape = SubResource("RectangleShape2D_oltiy")
 
 [node name="ScrollComponent" type="Node" parent="." node_paths=PackedStringArray("body")]

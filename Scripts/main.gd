@@ -10,9 +10,6 @@ extends Node
 var game_running : bool
 var game_over : bool
 var score
-var pipes : Array
-const PIPE_DELAY : int = 100
-const PIPE_RANGE : int = 200
 var ground_height : int
 
 # Called when the node enters the scene tree for the first time.
@@ -32,8 +29,6 @@ func new_game():
 	$ScoreLabel.text = "SCORE: " + str(score)
 	$Player.reset()
 	$GameOver.hide()
-	get_tree().call_group("pipes", "queue_free")
-	pipes.clear()
 	
 func _physics_process(delta: float) -> void:
 	if game_running:
@@ -41,21 +36,11 @@ func _physics_process(delta: float) -> void:
 		ground.update()
 		spawn_component.update()
 	
-func generate_pipes():
-	var pipe = pipe_scene.instantiate()
-	#pipe.position.x = screen_size.x + PIPE_DELAY
-	#pipe.position.y = (screen_size.y - ground_height) / 2 + randi_range(-PIPE_RANGE, PIPE_RANGE)
-	pipe.hit.connect(player_hit)
-	pipe.scored.connect(scored)
-	add_child(pipe)
-	pipes.append(pipe)
-	
 func scored():
 	score += 1
 	$ScoreLabel.text = "SCORE: " + str(score)
 		
 func stop_game():
-	$PipeTimer.stop()
 	$Player.active = false
 	game_running = false
 	game_over = true

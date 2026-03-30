@@ -1,9 +1,10 @@
 class_name SpawnComponent extends Node
 @onready var spawn_timer: Timer = $SpawnTimer
 
-const SPAWN_DELAY : int = 0
+const SPAWN_DELAY : int = 50
 
 @export var spawn_item : PackedScene
+@export var vertical_range : Vector2i
 
 var spawn_position : Vector2i
 var screen_size : Vector2i
@@ -24,7 +25,9 @@ func update() -> void:
 
 func spawn() -> void:
 	var item = spawn_item.instantiate()
+	spawn_position.y = randi_range(vertical_range.x, vertical_range.y)
 	item.position = spawn_position
+	print(spawn_position)
 	item.start(screen_size)
 	#pipe.position.x = screen_size.x + PIPE_DELAY
 	#pipe.position.y = (screen_size.y - ground_height) / 2 + randi_range(-PIPE_RANGE, PIPE_RANGE)
