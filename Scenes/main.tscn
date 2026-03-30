@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7b7j6g6nenev"]
+[gd_scene load_steps=9 format=3 uid="uid://b7b7j6g6nenev"]
 
 [ext_resource type="Script" uid="uid://dcijsn0bilojm" path="res://Scripts/main.gd" id="1_8gbba"]
 [ext_resource type="Texture2D" uid="uid://b1nc6xbcdpp2j" path="res://Art/bg.png" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://c6s7ucq6ua634" path="res://Scenes/tree.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://cf4pln1iuokm3" path="res://Scenes/player.tscn" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://v3rdvj1kbsq6" path="res://Scenes/ground.tscn" id="4_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://brvbwn7vul0uk" path="res://Scenes/game_over.tscn" id="6_21xkr"]
 [ext_resource type="PackedScene" uid="uid://bb6rjgqi1icwl" path="res://Scenes/main_menu.tscn" id="7_6bp64"]
 [ext_resource type="Script" uid="uid://blwmacsj50mol" path="res://Scripts/Components/SpawnComponent.gd" id="8_344ge"]
 
@@ -48,8 +47,6 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "Score: 0"
 
-[node name="GameOver" parent="." instance=ExtResource("6_21xkr")]
-
 [node name="SpawnComponent" type="Node" parent="."]
 script = ExtResource("8_344ge")
 spawn_item = ExtResource("2_kry3j")
@@ -61,4 +58,3 @@ wait_time = 1.5
 
 [connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
 [connection signal="body_entered" from="TopBorder" to="." method="_on_top_border_body_entered"]
-[connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]

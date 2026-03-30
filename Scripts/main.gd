@@ -28,7 +28,6 @@ func new_game():
 	score = 0
 	$ScoreLabel.text = "SCORE: " + str(score)
 	$Player.reset()
-	$GameOver.hide()
 	
 func _physics_process(delta: float) -> void:
 	if game_running:
@@ -41,10 +40,9 @@ func scored():
 	$ScoreLabel.text = "SCORE: " + str(score)
 		
 func stop_game():
-	$Player.active = false
 	game_running = false
 	game_over = true
-	$GameOver.show()
+	main_menu.show()
 	
 func player_hit():
 	stop_game()
