@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cf4pln1iuokm3" path="res://Scenes/player.tscn" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://v3rdvj1kbsq6" path="res://Scenes/ground.tscn" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bb6rjgqi1icwl" path="res://Scenes/main_menu.tscn" id="7_6bp64"]
-[ext_resource type="Script" uid="uid://blwmacsj50mol" path="res://Scripts/Components/SpawnComponent.gd" id="8_344ge"]
+[ext_resource type="Script" uid="uid://blwmacsj50mol" path="res://Scripts/Components/SpawnComponent.gd" id="7_344ge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
 size = Vector2(864, 25)
@@ -48,7 +48,7 @@ theme_override_font_sizes/font_size = 64
 text = "Score: 0"
 
 [node name="SpawnComponent" type="Node" parent="."]
-script = ExtResource("8_344ge")
+script = ExtResource("7_344ge")
 spawn_item = ExtResource("2_kry3j")
 vertical_range = Vector2i(140, 600)
 metadata/_custom_type_script = "uid://blwmacsj50mol"
