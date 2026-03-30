@@ -4,7 +4,10 @@ class_name Ground extends Area2D
 
 signal hit
 
-func update():
+func start() -> void:
+	scroll_component.start(get_window().size)
+
+func update() -> void:
 	scroll_component.update()
 
 func _on_body_entered(body: Node2D):
