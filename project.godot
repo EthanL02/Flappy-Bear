@@ -11,14 +11,19 @@ config_version=5
 [application]
 
 config/name="Flappy Bear"
-run/main_scene="res://Scenes/main.tscn"
+run/main_scene="uid://bvutifub5wrdb"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Network="*res://Scripts/Network.gd"
 
 [display]
 
 window/size/viewport_width=540
 window/size/viewport_height=960
+window/size/always_on_top=true
 window/stretch/mode="viewport"
 window/handheld/orientation=1
 

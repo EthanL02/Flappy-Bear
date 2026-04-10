@@ -4,7 +4,14 @@ class_name Player extends CharacterBody2D
 
 const START_POS = Vector2(100, 400)
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(int(name))
+
 func _ready():
+	add_to_group('Player')
+	if is_multiplayer_authority():
+		pass
+	
 	reset()
 	input_component.flap.connect(movement_component.flap)
 	

@@ -1,4 +1,4 @@
-class_name MainMenu extends CanvasLayer
+class_name StartMenu extends CanvasLayer
 
 signal start_solo
 
