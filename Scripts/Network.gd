@@ -2,7 +2,7 @@ extends Node
 
 
 const PLAYER = preload("uid://cf4pln1iuokm3")
-
+const MAINLEVEL = preload("uid://b7b7j6g6nenev")
 
 var enet_peer := ENetMultiplayerPeer.new()
 
@@ -31,7 +31,14 @@ func add_player(peer_id: int):
 		
 	var new_player = PLAYER.instantiate()
 	new_player.name = str(peer_id)
-	get_tree().current_scene.add_sibling(new_player, true)
+	get_tree().root.add_child(new_player, true)
+	
+func add_world(showReady : bool):
+	var new_world = MAINLEVEL.instantiate()
+	get_tree().root.add_child.call_deferred(new_world)
+	
+	if showReady:
+		new_world.find_child("ReadyMenu").show()
 	
 func remove_player(peer_id: int):
 	if peer_id == 1:

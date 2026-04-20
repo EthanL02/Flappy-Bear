@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6s7ucq6ua634"]
 
-[ext_resource type="Script" uid="uid://ccelhrulx5a0b" path="res://Scripts/TreeObstacle.gd" id="1_hnit7"]
-[ext_resource type="Texture2D" uid="uid://c208dg70o2cxx" path="res://Art/pipe.png" id="1_n21g0"]
-[ext_resource type="Script" uid="uid://0j65xk457rtc" path="res://Scripts/Components/ScrollComponent.gd" id="3_l7sa7"]
+[ext_resource type="Script" uid="uid://ccelhrulx5a0b" path="res://Scripts/Pipes.gd" id="1_y0sjt"]
+[ext_resource type="Script" uid="uid://0j65xk457rtc" path="res://Scripts/Components/ScrollComponent.gd" id="2_8tuol"]
+[ext_resource type="Texture2D" uid="uid://c208dg70o2cxx" path="res://Art/pipe.png" id="3_qdaht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnit7"]
 size = Vector2(72, 558.5)
@@ -10,11 +10,11 @@ size = Vector2(72, 558.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1buf"]
 size = Vector2(31, 200)
 
-[node name="Tree" type="Area2D" groups=["pipes"]]
-script = ExtResource("1_hnit7")
+[node name="Pipes" type="Area2D" groups=["pipes"]]
+script = ExtResource("1_y0sjt")
 
 [node name="ScrollComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
-script = ExtResource("3_l7sa7")
+script = ExtResource("2_8tuol")
 wrap = false
 body = NodePath("..")
 metadata/_custom_type_script = "uid://0j65xk457rtc"
@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://0j65xk457rtc"
 [node name="Upper" type="Sprite2D" parent="."]
 position = Vector2(0, -380)
 scale = Vector2(1, -1)
-texture = ExtResource("1_n21g0")
+texture = ExtResource("3_qdaht")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -379.25)
@@ -31,7 +31,7 @@ shape = SubResource("RectangleShape2D_hnit7")
 
 [node name="Lower" type="Sprite2D" parent="."]
 position = Vector2(0, 380)
-texture = ExtResource("1_n21g0")
+texture = ExtResource("3_qdaht")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(0.25, 379.5)
