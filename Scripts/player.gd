@@ -8,7 +8,7 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(int(name))
 
 func _ready():
-	add_to_group('Player')
+	add_to_group('Players')
 	if is_multiplayer_authority():
 		pass
 	

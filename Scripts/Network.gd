@@ -4,9 +4,9 @@ extends Node
 const PLAYER = preload("uid://cf4pln1iuokm3")
 const MAINLEVEL = preload("uid://b7b7j6g6nenev")
 
+@export var readyPlayers : Dictionary
+
 var enet_peer := ENetMultiplayerPeer.new()
-
-
 var PORT = 9999
 var IP_ADDRESS = '127.0.0.1'
 
@@ -25,7 +25,17 @@ func join_server():
 func on_connected_to_server():
 	add_player(multiplayer.get_unique_id())
 	
+func checkIfReady():
+	for player in readyPlayers:
+		if player == false:
+			print("false")
+			return false
+	print("true")
+	return true
+	
 func add_player(peer_id: int):
+	readyPlayers.set(peer_id, false)
+	
 	if peer_id == 1:
 		return
 		
@@ -38,13 +48,16 @@ func add_world(showReady : bool):
 	get_tree().root.add_child.call_deferred(new_world)
 	
 	if showReady:
-		new_world.find_child("ReadyMenu").show()
+		var readyMenu = new_world.find_child("ReadyMenu")
+		readyMenu.show()
+		readyMenu.find_child("ReadyButton").pressed.connect(checkIfReady())
+		
 	
 func remove_player(peer_id: int):
 	if peer_id == 1:
 		leave_server()
 		
-	var players: Array[Node] = get_tree().get_nodes_in_group('Player')
+	var players: Array[Node] = get_tree().get_nodes_in_group('Players')
 	var player_to_remove = players.find_custom(func(item): return item.name == str(peer_id))
 	if player_to_remove != -1:
 		players[player_to_remove].queue_free()
