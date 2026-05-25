@@ -11,6 +11,7 @@ size = Vector2(72, 558.5)
 size = Vector2(31, 200)
 
 [node name="Pipes" type="Area2D" groups=["pipes"]]
+collision_layer = 2
 script = ExtResource("1_y0sjt")
 
 [node name="ScrollComponent" type="Node" parent="." node_paths=PackedStringArray("body")]

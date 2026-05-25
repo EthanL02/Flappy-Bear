@@ -8,6 +8,7 @@
 size = Vector2(1728, 190)
 
 [node name="Ground" type="Area2D"]
+collision_layer = 2
 script = ExtResource("1_oltiy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,6 +1,5 @@
 extends Node
 
-@onready var player: Player = %Player
 @onready var ground: Ground = %Ground
 @onready var start_menu: StartMenu = $StartMenu
 @onready var spawn_component: SpawnComponent = $SpawnComponent
@@ -14,17 +13,18 @@ var ground_height : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ground.hit.connect(player_hit)
 	#start_menu.start_solo.connect(start_solo)
 	#new_game()
 	#start_solo()
 	pass
 	
-func start_solo() -> void:	
-	game_running = true
-	spawn_component.start()
-	spawn_component.hit.connect(player_hit)
-	spawn_component.scored.connect(scored)
-	ground.start()
+#func start_solo() -> void:	
+	#game_running = true
+	#spawn_component.start()
+	#spawn_component.hit.connect(player_hit)
+	#spawn_component.scored.connect(scored)
+	#ground.start()
 	
 func new_game():
 	game_running = false
@@ -42,13 +42,9 @@ func _physics_process(delta: float) -> void:
 func scored():
 	score += 1
 	$ScoreLabel.text = "SCORE: " + str(score)
-		
-func stop_game():
-	game_running = false
-	game_over = true
 	
 func player_hit():
-	stop_game()
+	pass
 
 
 func _on_game_over_restart():

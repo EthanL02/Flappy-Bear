@@ -25,13 +25,13 @@ func join_server():
 func on_connected_to_server():
 	add_player(multiplayer.get_unique_id())
 	
-func checkIfReady():
-	for player in readyPlayers:
-		if player == false:
-			print("false")
-			return false
-	print("true")
-	return true
+#func checkIfReady():
+	#for player in readyPlayers:
+		#if player == false:
+			#print("false")
+			#return false
+	#print("true")
+	#return true
 	
 func add_player(peer_id: int):
 	readyPlayers.set(peer_id, false)
@@ -47,10 +47,10 @@ func add_world(showReady : bool):
 	var new_world = MAINLEVEL.instantiate()
 	get_tree().root.add_child.call_deferred(new_world)
 	
-	if showReady:
-		var readyMenu = new_world.find_child("ReadyMenu")
-		readyMenu.show()
-		readyMenu.find_child("ReadyButton").pressed.connect(checkIfReady())
+	#if showReady:
+		#var readyMenu = new_world.find_child("ReadyMenu")
+		#readyMenu.show()
+		#readyMenu.find_child("ReadyButton").pressed.connect(checkIfReady())
 		
 	
 func remove_player(peer_id: int):
