@@ -20,12 +20,8 @@ func _ready() -> void:
 func on_join():
 	Network.join_server()
 	Network.add_world(true)
-	#add_world()
-	#readyMenu.show()
 	hide()
 	
 func add_world():
 	var new_world = MAINLEVEL.instantiate()
 	get_tree().current_scene.add_sibling.call_deferred(new_world)
-	
-	readyMenu = new_world.find_child("ReadyMenu")
