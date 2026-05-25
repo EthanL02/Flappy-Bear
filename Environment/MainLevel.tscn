@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7b7j6g6nenev"]
+
+[ext_resource type="Script" uid="uid://dcijsn0bilojm" path="res://Environment/MainLevel.gd" id="1_ele5m"]
+[ext_resource type="PackedScene" uid="uid://c6s7ucq6ua634" path="res://Environment/Pipes.tscn" id="2_jvris"]
+[ext_resource type="Texture2D" uid="uid://b1nc6xbcdpp2j" path="res://Art/bg.png" id="3_dduxc"]
+[ext_resource type="PackedScene" uid="uid://v3rdvj1kbsq6" path="res://Environment/ground.tscn" id="4_78kmg"]
+[ext_resource type="PackedScene" uid="uid://ko34v5ipgk3o" path="res://UI/ReadyMenu.tscn" id="6_o75o5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
+size = Vector2(864, 25)
+
+[node name="MainLevel" type="Node"]
+script = ExtResource("1_ele5m")
+pipe_scene = ExtResource("2_jvris")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("3_dduxc")
+centered = false
+
+[node name="Ground" parent="." instance=ExtResource("4_78kmg")]
+unique_name_in_owner = true
+z_index = 1
+
+[node name="TopBorder" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorder"]
+position = Vector2(432, -12.5)
+shape = SubResource("RectangleShape2D_kry3j")
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.5
+offset_right = 30.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Score: 0"
+
+[node name="ReadyMenu" parent="." instance=ExtResource("6_o75o5")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SpawnContainer" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://c6s7ucq6ua634")
+spawn_path = NodePath("../SpawnContainer")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true

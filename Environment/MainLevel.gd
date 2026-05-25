@@ -2,7 +2,8 @@ extends Node
 
 @onready var ground: Ground = %Ground
 @onready var start_menu: StartMenu = $StartMenu
-@onready var spawn_component: SpawnComponent = $SpawnComponent
+@onready var spawn_container: Node2D = %SpawnContainer
+@onready var spawn_timer: Timer = %SpawnTimer
 
 @export var pipe_scene : PackedScene
 
@@ -13,10 +14,17 @@ var ground_height : int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.spawnContainer = spawn_container
+	spawn_timer.timeout.connect(spawnPipes)
+	
 	ground.hit.connect(player_hit)
 	#start_menu.start_solo.connect(start_solo)
 	#new_game()
 	#start_solo()
+	pass
+	
+func spawnPipes():
+	Global.spawnPipes.rpc_id(1)
 	pass
 	
 #func start_solo() -> void:	

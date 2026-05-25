@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://pcvoeex12hl" path="res://Scripts/player.gd" id="1_vgqql"]
 [ext_resource type="Texture2D" uid="uid://cc4x8o5pvtegr" path="res://Art/bird2.png" id="2_vgqql"]
 [ext_resource type="Texture2D" uid="uid://b0aconm23l22m" path="res://Art/bird3.png" id="3_fkybt"]
-[ext_resource type="Script" uid="uid://cxscsag3frxsb" path="res://Scripts/Components/MovementComponent.gd" id="5_fkybt"]
-[ext_resource type="Script" uid="uid://b1gpi4p2sokxi" path="res://Scripts/Components/InputComponent.gd" id="6_x3wgy"]
+[ext_resource type="Script" uid="uid://cxscsag3frxsb" path="res://Components/MovementComponent.gd" id="5_fkybt"]
+[ext_resource type="Script" uid="uid://b1gpi4p2sokxi" path="res://Components/InputComponent.gd" id="6_x3wgy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3wgy"]
 animations = [{

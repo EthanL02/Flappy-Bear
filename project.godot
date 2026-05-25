@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Network="*res://Scripts/Network.gd"
 TileRunInstancesGlobal="res://addons/tile-run-instances/tile_run_instances_global.gd"
+Global="*res://Scripts/global.gd"
 
 [display]
 
@@ -30,7 +31,18 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/tile-run-instances/plugin.cfg")
+enabled=PackedStringArray()
+
+[file_customization]
+
+folder_colors={
+"res://Art/": "purple",
+"res://Components/": "orange",
+"res://Environment/": "green",
+"res://Player/": "blue",
+"res://Scripts/": "pink",
+"res://UI/": "red"
+}
 
 [input]
 

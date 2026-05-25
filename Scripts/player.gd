@@ -10,8 +10,8 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(int(name))
 
 func _ready():
-	if is_multiplayer_authority():
-		pass
+	if not is_multiplayer_authority():
+		return
 	ground = $"/root/MainLevel/Ground"
 	ground.hit.connect(reset)
 	add_to_group('Players')
@@ -19,13 +19,9 @@ func _ready():
 	reset()
 	input_component.flap.connect(movement_component.flap)
 	
-func _physics_process(delta: float):
-	if is_multiplayer_authority():
-		pass
-	
 func reset():
-	if is_multiplayer_authority():
-		pass
+	if not is_multiplayer_authority():
+		return
 	movement_component.body.velocity.y = 0
 	movement_component.active = 0
 	position = START_POS
