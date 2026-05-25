@@ -15,7 +15,8 @@ func _ready():
 	spawn_timer.timeout.connect(spawnPipes)
 	
 func spawnPipes():
-	Global.spawnPipes.rpc_id(1)
+	if OS.has_feature('server'):
+		Global.spawnPipes.rpc_id(1)
 	
 func new_game():
 	score = 0

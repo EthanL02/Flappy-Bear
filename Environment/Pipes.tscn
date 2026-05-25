@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6s7ucq6ua634"]
+[gd_scene load_steps=7 format=3 uid="uid://c6s7ucq6ua634"]
 
 [ext_resource type="Script" uid="uid://ccelhrulx5a0b" path="res://Environment/Pipes.gd" id="1_awa6g"]
 [ext_resource type="Script" uid="uid://0j65xk457rtc" path="res://Components/ScrollComponent.gd" id="2_5mr1m"]
@@ -9,6 +9,11 @@ size = Vector2(72, 558.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p1buf"]
 size = Vector2(31, 200)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_awa6g"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="Pipes" type="Area2D" groups=["pipes"]]
 collision_layer = 2
@@ -43,6 +48,9 @@ shape = SubResource("RectangleShape2D_hnit7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreArea"]
 position = Vector2(43.5, 0)
 shape = SubResource("RectangleShape2D_p1buf")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_awa6g")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="ScoreArea" to="." method="_on_score_area_body_entered"]
